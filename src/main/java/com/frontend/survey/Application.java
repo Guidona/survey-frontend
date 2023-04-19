@@ -1,4 +1,4 @@
-package com.example.application;
+package com.frontend.survey;
 
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.theme.Theme;
