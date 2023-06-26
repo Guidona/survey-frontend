@@ -12,9 +12,11 @@ import com.frontend.survey.data.Questionnaire;
 
 public class SurveyProxy {
 
+    private static String serverUrl = "http://34.78.194.119:8080";
+
     public static List<String> getQuestionnaires() {
         ResponseEntity<List<Questionnaire>> response = new RestTemplate().exchange(
-                "http://35.195.235.84:8080/api/questionnaires",
+                serverUrl.concat("/api/questionnaires"),
                 HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<Questionnaire>>() {
                 });
@@ -23,7 +25,7 @@ public class SurveyProxy {
 
     public static List<Questionnaire> getListQuestionnaires() {
         ResponseEntity<List<Questionnaire>> response = new RestTemplate().exchange(
-                "http://35.195.235.84:8080/api/questionnaires",
+                serverUrl.concat("/api/questionnaires"),
                 HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<Questionnaire>>() {
                 });
@@ -31,11 +33,10 @@ public class SurveyProxy {
     }
 
     public static void exportFormulaires(Long formulaireId) {
-        String url = "http://35.195.235.84:8080/api/flat-export/formulaires?questionnaireId";
-        new RestTemplate().getForEntity(url, String.class);
+        new RestTemplate().getForEntity(serverUrl.concat("/api/flat-export/formulaires?questionnaireId"), String.class);
     }
 
     public static String getDownloadLink(Long formulaireId) {
-        return "http://35.195.235.84:8080/api/flat-export/formulaires?questionnaireId=" + formulaireId;
+        return serverUrl + "/api/flat-export/formulaires?questionnaireId=" + formulaireId;
     }
 }
